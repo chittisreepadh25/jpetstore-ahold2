@@ -3,7 +3,9 @@
 name: $(build.sourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
 trigger:
   batch: true
-  - master
+  branches:
+    include:
+    - master
 pr:
   - master
 variables:
