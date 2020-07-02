@@ -28,12 +28,6 @@ variables:
   azureServiceConnectionId: 'ahold-poc-demo'
   azureArtifactName: 'jpetstore'
   azureFeedPublishName: '765878f8-c954-450c-9d10-10f7effa2b3c'
-resources:
-  repositories:
-  - repository: jpetstore-ahold
-    type: github
-    endpoint: github_token
-    name: chittisreepadh25/jpetstore-ahold
 stages:
 - stage: JavaBuildPipeline
   displayName: Java CI CD Build Pipeline
@@ -43,7 +37,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - checkout: jpetstore-ahold
+    - checkout: self
       displayName: CodeCheckout
     - task: Maven@3
       condition: and(succeeded(), ne(variables['TriggeringArtifactSourceBranchName'], 'merge'))
